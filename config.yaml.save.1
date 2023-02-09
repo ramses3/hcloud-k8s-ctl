@@ -28,13 +28,12 @@ autoscaler:
         - --skip-nodes-with-local-storage=false
         - --skip-nodes-with-system-pods=false
         - --scale-down-utilization-threshold=0.8
-        - --enforce-node-group-min-size=true
     defaults:
-        min: 3
+        min: 
         max: 50
     workers:
         - location: hel1
-          min: 3
+          min: 0
           max: 50
           type:
             - cpx21

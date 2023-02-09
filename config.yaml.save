@@ -1,0 +1,36 @@
+hetznerToken:
+    main: wy1cVneJjatcVtZKVVQSvmGkPY49PkfeuMYcGtuzpZSGZ7JRdWNiCTOVV08DeZWD
+sshPrivateKey: /Users/josefreyre/.ssh/cluster_rsa
+sshPublicKey: /Users/josefreyre/.ssh/cluster_rsa.pub
+ipRange: "10.0.0.0/16"
+masterCount: 3
+networkZone: us-east
+location: ash
+datacenter: ash-dc1
+masterServers:
+  namepattern: master-%d
+  servertype: cpx21
+  image: ubuntu-20.04
+  labels:
+    role: master
+masterLoadBalancer:
+    loadbalancertype: lb11
+    listenport: 6443
+    destinationport: 6443
+autoscaler:
+  enabled: true
+  args:
+    - --v=4
+    - --cloud-provider=hetzner
+    - --stderrthreshold=info
+    - --expander=least-waste
+    - --scale-down-enabled=true
+    - --skip-nodes-with-local-storage=false
+    - --skip-nodes-with-system-pods=false
+    - --scale-down-utilization-threshold=0.8
+  workers:
+    - location: ash
+      min: 0
+      max: 0
+      type:
+        - cpx21

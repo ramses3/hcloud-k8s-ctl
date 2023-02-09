@@ -183,7 +183,7 @@ func defaultConfig() Type { //nolint:funlen
 				"--scale-down-utilization-threshold=0.8",
 			},
 			Defaults: autoscalerDefaults{
-				Min: 0,
+				Min: 3,
 				Max: workersCount,
 			},
 			Workers: []autoscalerWorker{

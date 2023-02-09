@@ -15,7 +15,7 @@
 # limitations under the License.
 set -ex
 
-: "${KUBERNETES_VERSION:=1.24.9}"
+: "${KUBERNETES_VERSION:=1.26.1}"
 
 export DOCKER_VERSION=5:20.10.17~3-0~ubuntu-focal
 export CONTAINERD_VERSION=1.6.6-1
@@ -193,11 +193,11 @@ mkdir -p /etc/kubernetes/kubelet/
 
 # https://docs.hetzner.com/dns-console/dns/general/recursive-name-servers
 cat > /etc/kubernetes/kubelet/resolv.conf <<EOF
-nameserver 185.12.64.1
-nameserver 185.12.64.2
+nameserver 1.1.1.1
+nameserver 8.8.8.8
 EOF
 
-INSTANCE_ID=$(curl http://169.254.169.254/hetzner/v1/metadata/instance-id)
+#INSTANCE_ID=$(curl http://169.254.169.254/hetzner/v1/metadata/instance-id)
 
 # kubeadm config print init-defaults --component-configs KubeletConfiguration
 cat <<EOF | tee /etc/kubernetes/kubelet/config.yaml

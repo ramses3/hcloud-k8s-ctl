@@ -155,7 +155,8 @@ spec:
             topologyKey: kubernetes.io/hostname
       containers:
       - name: cluster-autoscaler
-        image: paskalmaksim/cluster-autoscaler-amd64:fc3aefc3d
+#        image: paskalmaksim/cluster-autoscaler-amd64:fc3aefc3d
+        image: k8s.gcr.io/autoscaling/cluster-autoscaler-amd64:v1.26.1
         imagePullPolicy: IfNotPresent
         resources:
           requests:
